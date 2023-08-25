@@ -1,0 +1,19 @@
+<h1>Flickr photostream</h1>
+
+<%= form_with url: "/", method: :post, local: true, data: { turbo: false } do |form| %>
+  <%= form.label :flickr_user_id, "Enter Flickr user ID:" %>
+  <%= form.text_field :flickr_user_id %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if @photo_urls && !@photo_urls.empty? %>
+  <h2>Public stream of user: <%= params[:flickr_user_id] %></h2>
+
+  <div class="photos">
+    <% @photo_urls.each do |photo| %>
+      <div>
+        <%= image_tag(photo) %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
